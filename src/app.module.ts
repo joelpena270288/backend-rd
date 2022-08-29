@@ -1,3 +1,6 @@
+import { AlertaModule } from './modules/alerta/alerta.module';
+import { DocumentoModule } from './modules/documento/documento.module';
+import { SolicitudModule } from './modules/solicitud/solicitud.module';
 import { Module } from '@nestjs/common';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
@@ -10,12 +13,15 @@ import { RoleModule } from './modules/role/role.module';
 
 @Module({
   imports: [
+    AlertaModule,
+    DocumentoModule,
+    SolicitudModule,
     AuthModule,
     UserModule,
     ConfigModule,
     DatabaseModule,
     RoleModule,
-   
+
   ],
   controllers: [],
   providers: [],

@@ -11,9 +11,11 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
+import { Alerta } from '../alerta/alerta.entity';
 
 
 import { Role } from '../role/role.entity';
+import { Solicitud } from '../solicitud/solicitud.entity';
 
 import { UserDetails } from './user.details.entity';
 
@@ -43,9 +45,13 @@ export class User extends BaseEntity {
   @ManyToMany((type) => Role, (role) => role.users, { eager: true })
   @JoinTable()
   roles: Role[];
+  @OneToMany(() => Alerta, (alerta) => alerta.user)
+  alertas: Alerta[];
+
   @Column({ type: 'varchar', length: 8 })
   status: string;
- 
+  @OneToMany(() => Solicitud, (solicitud) => solicitud.user)
+  solicitudes: Solicitud[];
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
   createdAt: Date;
   @CreateDateColumn({ type: 'timestamp', name: 'updated_at' })
